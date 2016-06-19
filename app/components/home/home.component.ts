@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
+import { RouteConfig, ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 @Component({
     selector: 'home',
@@ -7,10 +7,10 @@ import { RouteConfig, ROUTER_DIRECTIVES, Router } from '@angular/router-deprecat
         <div [class]='sideSelected'>{{description}}</div>
         <div [class]='sideSelected'>
           <div class='side light' >
-            <a [routerLink]="['RebelAlliance']">Rebel alliance</a>
+            <a [routerLink]="['/rebels']">Rebel alliance</a>
           </div>
           <div  class='side dark' >
-            <a [routerLink]="['Empire']">Empire</a>
+            <a [routerLink]="['/empire']">Empire</a>
           </div>
         </div>
     `,
@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
     }
     
     ngOnInit(){
-        this.router.subscribe( currentUrl => {
-          this.sideSelected = 'hide';  
-        });   
+        //this.router.subscribe( currentUrl => {
+        //  this.sideSelected = 'hide';  
+        //});   
     }
 }

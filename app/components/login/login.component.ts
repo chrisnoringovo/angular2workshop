@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from '@angular/router-deprecated';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from '@angular/router';
 
 @Component({
     selector: 'login',
@@ -28,6 +28,6 @@ export class LoginComponent {
     
     login() {
         // TODO call login service
-        this.router.navigate(['/Home', {}]);
+        this.router.navigate(['/home', {}]);
     }
 }

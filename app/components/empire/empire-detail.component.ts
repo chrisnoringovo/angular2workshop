@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router, RouteParams } from '@angular/router-deprecated';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router, ActivatedRoute } from '@angular/router';
 import { EmpireService } from './empire.service';
 import { Villain } from '../shared/models';
 
@@ -17,7 +17,7 @@ import { Villain } from '../shared/models';
       Gender {{ villain?.gender }}
     </p>
     <div>
-        <a [routerLink]="['Empire']">Home</a> 
+        <a [routerLink]="['/empire']">Home</a> 
     </div>
    `,
    directives : [ ROUTER_DIRECTIVES ] 
@@ -27,16 +27,21 @@ export class EmpireDetailComponent implements OnInit {
     villain:Villain;
     
     constructor(
+        private route:ActivatedRoute,
         private router:Router,
-        private routeParams:RouteParams,
         private empireService:EmpireService
         ){
          
     }
     
     ngOnInit(){
-        this.id = parseInt( this.routeParams.get('id'));
-        this.empireService.getVillainDetail( this.id ).subscribe( villain => this.villain = villain );
+        var me = this;
+        this.id = this.route.params.subscribe(params => {
+            let id = params['id']; // (+) converts string 'id' to a number
+            me.id = id;
+            this.empireService.getVillainDetail( me.id ).subscribe( villain => this.villain = villain );
+        });
+        
         // load item by id
     }
 }

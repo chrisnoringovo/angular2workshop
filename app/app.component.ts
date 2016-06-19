@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from '@angular/router-deprecated';
-
-import { RebelAllianceComponent } from './components/rebel-alliance/rebel-alliance.component';
-import { EmpireComponent } from './components/empire/empire.component';
-import { EmpireDetailComponent } from './components/empire/empire-detail.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 import { EmpireService } from './components/empire/empire.service';
 import { HTTP_PROVIDERS } from '@angular/http';
@@ -29,7 +22,7 @@ import { PlanetsService } from './components/planets/planets.service';
        ROUTER_DIRECTIVES
    ],
    providers: [
-     ROUTER_PROVIDERS,
+    
      HTTP_PROVIDERS,
      EmpireService,
      UserService,
@@ -37,33 +30,7 @@ import { PlanetsService } from './components/planets/planets.service';
      BaseClient
    ]
 })
-@RouteConfig([
-  {
-    path: '/rebels',
-    name: 'RebelAlliance',
-    component: RebelAllianceComponent,
-  },
-  {
-    path: '/empire',
-    name: 'Empire',
-    component: EmpireComponent
-  },
-  {
-      path : '/empire/:id',
-      name: 'EmpireDetail',
-      component: EmpireDetailComponent
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: HomeComponent
-  },
-  {
-      path: '/login',
-      name: 'Login',
-      component : LoginComponent
-  }
-])
+
 export class AppComponent implements OnInit  { 
     title:string;
     
@@ -78,7 +45,7 @@ export class AppComponent implements OnInit  {
     }
     
     ngOnInit(){
-        this.router.navigate(['/Login', {}]);
+        this.router.navigate(['/login', {}]);
     }
     
     
